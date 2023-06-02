@@ -2,14 +2,14 @@
 
 # Car that is produced in factory
 class Car
-  def initialize(type, seats, engine, doors, multimedia, suspension, electrical_system)
-    @car_type = type
-    @seats = seats
-    @engine = engine
-    @doors = doors
-    @multimedia = multimedia
-    @suspension = suspension
-    @electrical_system = electrical_system
+  def initialize(array)
+    @car_type = array[0]
+    @seats = array[1]
+    @engine = array[2]
+    @doors = array[3]
+    @multimedia = array[4]
+    @suspension = array[5]
+    @electrical_system = array[6]
   end
 
   def display
@@ -31,13 +31,14 @@ class Factory
   end
 
   def produce_car
-    my_object = Car.new('Normal', 5, 'V-4', 4, 'KenWood', 'Spring', 'Silver')
+    array = ['Normal', 5, 'V-4', 4, 'KenWood', 'Spring', 'Silver']
+    my_object = Car.new(array)
     @cars << my_object
     my_object.display
   end
 
-  def produce_custom_car(type, seats, engine, doors, multimedia, suspension, electrical_system)
-    my_object = Car.new(type, seats, engine, doors, multimedia, suspension, electrical_system)
+  def produce_custom_car(array)
+    my_object = Car.new(array)
     @cars << my_object
     my_object.display
   end
@@ -49,6 +50,7 @@ end
 
 factory = Factory.new
 factory.produce_car
-factory.produce_custom_car('Custom', 4, 'V-8', 4, 'Boss', 'Air Suspension', 'Copper')
-factory.produce_custom_car('Sports', 2, 'V-6', 2, 'Boom Master', 'Sports', 'Copper-Gold')
+
+array = ['Custom', 4, 'V-8', 4, 'Boss', 'Air Suspension', 'Copper']
+factory.produce_custom_car(array)
 factory.cars_counts
