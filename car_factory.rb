@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+# Car that is produced in factory
 class Car
-  attr_accessor :seats, :engine, :doors, :multimedia, :suspension, :electrical_system
-
-  def initialize(seats, engine, doors, multimedia, suspension, electrical_system)
+  def initialize(type, seats, engine, doors, multimedia, suspension, electrical_system)
+    @car_type = type
     @seats = seats
     @engine = engine
     @doors = doors
@@ -12,45 +12,43 @@ class Car
     @electrical_system = electrical_system
   end
 
-  def display_details
-    puts 'Car Details:'
-    puts "Seats: #{@seats}"
-    puts "Engine: #{@engine}"
-    puts "Doors: #{@doors}"
-    puts "Multimedia: #{@multimedia}"
-    puts "Suspension: #{@suspension}"
-    puts "Electrical System: #{@electrical_system}"
-    puts '-------------------------------'
+  def display
+    puts "Car Type = #{@car_type}"
+    puts "Seats in car = #{@seats}"
+    puts "Engine of car= #{@engine}"
+    puts "Number of Doors = #{@doors}"
+    puts "Multimedia Type = #{@multimedia}"
+    puts "Suspension Type = #{@suspension}"
+    puts "Electrical system of car = #{@electrical_system}"
+    puts '------------------------'
   end
 end
 
-class CarFactory
-  @@instance = nil
-  attr_reader :cars
-
-  private_class_method :new
-
-  def self.instance
-    @@instance ||= new
-  end
-
+# Factory which Produce Car
+class Factory
   def initialize
     @cars = []
   end
 
-  def create_car(seats: 5, engine: 'V6', doors: 4, multimedia: 'Basic', suspension: 'Standard',
-                 electrical_system: 'Standard')
-    car = Car.new(seats, engine, doors, multimedia, suspension, electrical_system)
-    @cars << car
-    car
+  def produce_car
+    my_object = Car.new('Normal', 5, 'V-4', 4, 'KenWood', 'Spring', 'Silver')
+    @cars << my_object
+    my_object.display
   end
 
-  def get_car_count
-    @cars.size
+  def produce_custom_car(type, seats, engine, doors, multimedia, suspension, electrical_system)
+    my_object = Car.new(type, seats, engine, doors, multimedia, suspension, electrical_system)
+    @cars << my_object
+    my_object.display
+  end
+
+  def cars_counts
+    puts "Number of car produced in factory  = #{@cars.size}"
   end
 end
 
-factory.create_car(seats: 4, engine: 'V8', multimedia: 'Advanced')
-factory.create_car
-
-puts "Total cars produced: #{Carfactory.get_car_count}"
+factory = Factory.new
+factory.produce_car
+factory.produce_custom_car('Custom', 4, 'V-8', 4, 'Boss', 'Air Suspension', 'Copper')
+factory.produce_custom_car('Sports', 2, 'V-6', 2, 'Boom Master', 'Sports', 'Copper-Gold')
+factory.cars_counts

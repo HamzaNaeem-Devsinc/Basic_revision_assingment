@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# publisher class
 class Publisher
   attr_reader :subscribers
 
@@ -20,6 +23,7 @@ class Publisher
   end
 end
 
+# Subscribers Class
 class Subscriber
   attr_reader :name
 
@@ -33,16 +37,12 @@ class Subscriber
 end
 
 publisher = Publisher.new
-
-#my_object = MyClass.new(value)
-#my_object.print_value
-
-subscriber1 = Subscriber.new("Hamza")
-subscriber2 = Subscriber.new("Ali")
+subscriber1 = Subscriber.new('Hamza')
+subscriber2 = Subscriber.new('Ali')
 publisher.add_subscriber(subscriber1)
 publisher.add_subscriber(subscriber2)
 
-publisher.publish_news("COVID-19 cases on the rise!")
-publisher.publish_news("Imran khan arrested")
-
-
+publisher.publish_news('COVID-19 cases on the rise!')
+publisher.publish_news('Imran khan arrested')
+publisher.publish_news('Imran khan arrested')
+publisher.publish_news('Pervaiz Illahi arrested')
