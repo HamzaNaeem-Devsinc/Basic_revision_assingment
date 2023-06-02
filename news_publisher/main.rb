@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'class_publisher'
 require_relative 'class_subscriber'
 
